@@ -1,0 +1,13 @@
+data/System/LazyLoadPlugin.txt 0644
+lib/Foswiki/Plugins/LazyLoadPlugin/Core.pm 0644
+lib/Foswiki/Plugins/LazyLoadPlugin.pm 0644
+pub/System/LazyLoadPlugin/img/grey.gif 0644
+pub/System/LazyLoadPlugin/img/transparent.gif 0644
+pub/System/LazyLoadPlugin/img/white.gif 0644
+pub/System/LazyLoadPlugin/jquery.lazyload.init.js 0644
+pub/System/LazyLoadPlugin/jquery.lazyload.init.js.gz 0644
+pub/System/LazyLoadPlugin/jquery.lazyload.init.uncompressed.js 0644
+pub/System/LazyLoadPlugin/jquery.lazyload.js 0644
+pub/System/LazyLoadPlugin/jquery.lazyload.js.gz 0644
+pub/System/LazyLoadPlugin/jquery.lazyload.uncompressed.js 0644
+pub/System/LazyLoadPlugin/Makefile 0644
