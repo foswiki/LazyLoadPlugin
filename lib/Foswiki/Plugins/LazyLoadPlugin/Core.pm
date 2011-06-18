@@ -20,6 +20,7 @@ sub new {
       javascript => ['jquery.lazyload.js', 'jquery.lazyload.init.js'], 
       documentation => 'LazyLoadPlugin',
       puburl => '%PUBURLPATH%/%SYSTEMWEB%/LazyLoadPlugin',
+      dependencies => ["metadata"],
     ),
     $class
   );
