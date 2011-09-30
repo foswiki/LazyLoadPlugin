@@ -43,6 +43,7 @@ Note that you won't need to surround an %IMAGEGALLERY tag of Foswiki:Extensions/
 |  Release: | %$RELEASE% |
 |  Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  30 Sep 2011: | fixed dependency on jquery.metadata |
 |  Dependencies: | %$DEPENDENCIES% |
 |  Home page: | Foswiki:Extensions/%TOPIC% |
 |  Support: | Foswiki:Support/%TOPIC% |

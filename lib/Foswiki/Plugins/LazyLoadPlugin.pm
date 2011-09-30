@@ -22,7 +22,7 @@ use Foswiki::Func ();
 use Foswiki::Plugins::JQueryPlugin ();
 
 our $VERSION = '$Rev$';
-our $RELEASE = '1.0';
+our $RELEASE = '1.10';
 our $SHORTDESCRIPTION = 'deferred loading of images';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneInit;
