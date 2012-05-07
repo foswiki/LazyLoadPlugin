@@ -18,12 +18,12 @@ package Foswiki::Plugins::LazyLoadPlugin;
 use strict;
 use warnings;
 
-use Foswiki::Func                  ();
+use Foswiki::Func ();
 use Foswiki::Plugins::JQueryPlugin ();
 
-our $VERSION           = '$Rev$';
-our $RELEASE           = '1.10';
-our $SHORTDESCRIPTION  = 'deferred loading of images';
+our $VERSION = '$Rev$';
+our $RELEASE = '1.10';
+our $SHORTDESCRIPTION = 'deferred loading of images';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneInit;
 our $translationToken;
@@ -31,52 +31,43 @@ our $placeholder;
 
 sub initPlugin {
 
-    $translationToken = "\2";
-    $placeholder =
-"$Foswiki::cfg{PubUrlPath}/$Foswiki::cfg{SystemWebName}/LazyLoadPlugin/img/white.gif";
-    $doneInit = 0;
+  $translationToken = "\2";
+  $placeholder = "$Foswiki::cfg{PubUrlPath}/$Foswiki::cfg{SystemWebName}/LazyLoadPlugin/img/white.gif";
+  $doneInit = 0;
 
-    Foswiki::Plugins::JQueryPlugin::registerPlugin( "LazyLoad",
-        "Foswiki::Plugins::LazyLoadPlugin::Core" );
+  Foswiki::Plugins::JQueryPlugin::registerPlugin("LazyLoad", "Foswiki::Plugins::LazyLoadPlugin::Core");
 
-    Foswiki::Func::registerTagHandler(
-        "STARTLAZYLOAD",
-        sub {
-            unless ($doneInit) {
-                Foswiki::Plugins::JQueryPlugin::createPlugin("LazyLoad");
-                $doneInit = 1;
-            }
+  Foswiki::Func::registerTagHandler("STARTLAZYLOAD", sub {
+    unless ($doneInit) {
+      Foswiki::Plugins::JQueryPlugin::createPlugin("LazyLoad");
+      $doneInit = 1;
+    }
 
-            return $translationToken . "<div class='jqLazyLoad'>";
-        }
-    );
+    return $translationToken."<div class='jqLazyLoad'>";
+  });
 
-    Foswiki::Func::registerTagHandler(
-        "ENDLAZYLOAD",
-        sub {
-            return "</div>" . $translationToken;
-        }
-    );
+  Foswiki::Func::registerTagHandler("ENDLAZYLOAD", sub {
+    return "</div>".$translationToken;
+  });
 
-    return 1;
+
+  return 1;
 }
 
 sub completePageHandler {
+  # my ( $text, $topic, $web, $meta ) = @_;
 
-    # my ( $text, $topic, $web, $meta ) = @_;
-
-    $_[0] =~
-s/$translationToken(<div class='jqLazyLoad'>)(.*?)(<\/div>)$translationToken/$1.handleLazyLoad($2).$3/geos;
+  $_[0] =~ s/$translationToken(<div class='jqLazyLoad'>)(.*?)(<\/div>)$translationToken/$1.handleLazyLoad($2).$3/geos;
 }
 
 sub handleLazyLoad {
-    my $text = shift;
+  my $text = shift;
 
-    # repace src with data-original html5 attribute
-    $text =~
-s/(<img[^>]*?)src=(["'].*?["'])([^>]*?>)/$1src='$placeholder' data-original=$2$3/g;
 
-    return $text;
+  # repace src with data-original html5 attribute
+  $text =~ s/(<img[^>]*?)src=(["'].*?["'])([^>]*?>)/$1src='$placeholder' data-original=$2$3/g;
+
+  return $text;
 }
 
 1;
