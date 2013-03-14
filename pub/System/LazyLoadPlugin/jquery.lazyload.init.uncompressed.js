@@ -11,10 +11,5 @@ jQuery(function($) {
 
     $this.addClass("jqInitedLazyLoad");
     $this.find("img").lazyload(opts);
- 
-    // give it a nother clap after a second
-    setTimeout(function() {
-      $(window).trigger("resize");
-    }, 500);
   });
 });

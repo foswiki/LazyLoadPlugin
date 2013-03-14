@@ -9,15 +9,15 @@
  * Project home:
  *   http://www.appelsiini.net/projects/lazyload
  *
- * Version:  1.7.2
+ * Version:  1.8.2
  *
  */
-(function($, window) {
-
-    $window = $(window);
+(function($, window, document, undefined) {
+    var $window = $(window);
 
     $.fn.lazyload = function(options) {
         var elements = this;
+        var $container;
         var settings = {
             threshold       : 0,
             failure_limit   : 0,
@@ -44,6 +44,8 @@
                 } else if (!$.belowthefold(this, settings) &&
                     !$.rightoffold(this, settings)) {
                         $this.trigger("appear");
+                        /* if we found an image we'll load, reset the counter */
+                        counter = 0;
                 } else {
                     if (++counter > settings.failure_limit) {
                         return false;
@@ -129,9 +131,23 @@
         $window.bind("resize", function(event) {
             update();
         });
+              
+        /* With IOS5 force loading images when navigating with back button. */
+        /* Non optimal workaround. */
+        if ((/iphone|ipod|ipad.*os 5/gi).test(navigator.appVersion)) {
+            $window.bind("pageshow", function(event) {
+                if (event.originalEvent.persisted) {
+                    elements.each(function() {
+                        $(this).trigger("appear");
+                    });
+                }
+            });
+        }
 
         /* Force initial check if images should appear. */
-        update();
+        $(document).ready(function() {
+            update();
+        });
         
         return this;
     };
@@ -145,7 +161,7 @@
         if (settings.container === undefined || settings.container === window) {
             fold = $window.height() + $window.scrollTop();
         } else {
-            fold = $container.offset().top + $container.height();
+            fold = $(settings.container).offset().top + $(settings.container).height();
         }
 
         return fold <= $(element).offset().top - settings.threshold;
@@ -157,7 +173,7 @@
         if (settings.container === undefined || settings.container === window) {
             fold = $window.width() + $window.scrollLeft();
         } else {
-            fold = $container.offset().left + $container.width();
+            fold = $(settings.container).offset().left + $(settings.container).width();
         }
 
         return fold <= $(element).offset().left - settings.threshold;
@@ -169,7 +185,7 @@
         if (settings.container === undefined || settings.container === window) {
             fold = $window.scrollTop();
         } else {
-            fold = $container.offset().top;
+            fold = $(settings.container).offset().top;
         }
 
         return fold >= $(element).offset().top + settings.threshold  + $(element).height();
@@ -181,30 +197,31 @@
         if (settings.container === undefined || settings.container === window) {
             fold = $window.scrollLeft();
         } else {
-            fold = $container.offset().left;
+            fold = $(settings.container).offset().left;
         }
 
         return fold >= $(element).offset().left + settings.threshold + $(element).width();
     };
 
     $.inviewport = function(element, settings) {
-         return !$.rightofscreen(element, settings) && !$.leftofscreen(element, settings) && 
+         return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) &&
                 !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
      };
 
     /* Custom selectors for your convenience.   */
-    /* Use as $("img:below-the-fold").something() */
+    /* Use as $("img:below-the-fold").something() or */
+    /* $("img").filter(":below-the-fold").something() which is faster */
 
     $.extend($.expr[':'], {
-        "below-the-fold" : function(a) { return $.belowthefold(a, {threshold : 0, container: window}); },
-        "above-the-top"  : function(a) { return !$.belowthefold(a, {threshold : 0, container: window}); },
-        "right-of-screen": function(a) { return $.rightoffold(a, {threshold : 0, container: window}); },
-        "left-of-screen" : function(a) { return !$.rightoffold(a, {threshold : 0, container: window}); },
-        "in-viewport"    : function(a) { return !$.inviewport(a, {threshold : 0, container: window}); },
+        "below-the-fold" : function(a) { return $.belowthefold(a, {threshold : 0}); },
+        "above-the-top"  : function(a) { return !$.belowthefold(a, {threshold : 0}); },
+        "right-of-screen": function(a) { return $.rightoffold(a, {threshold : 0}); },
+        "left-of-screen" : function(a) { return !$.rightoffold(a, {threshold : 0}); },
+        "in-viewport"    : function(a) { return $.inviewport(a, {threshold : 0}); },
         /* Maintain BC for couple of versions. */
-        "above-the-fold" : function(a) { return !$.belowthefold(a, {threshold : 0, container: window}); },
-        "right-of-fold"  : function(a) { return $.rightoffold(a, {threshold : 0, container: window}); },
-        "left-of-fold"   : function(a) { return !$.rightoffold(a, {threshold : 0, container: window}); }
+        "above-the-fold" : function(a) { return !$.belowthefold(a, {threshold : 0}); },
+        "right-of-fold"  : function(a) { return $.rightoffold(a, {threshold : 0}); },
+        "left-of-fold"   : function(a) { return !$.rightoffold(a, {threshold : 0}); }
     });
 
-})(jQuery, window);
+})(jQuery, window, document);
