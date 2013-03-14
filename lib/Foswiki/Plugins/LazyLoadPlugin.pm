@@ -21,8 +21,8 @@ use warnings;
 use Foswiki::Func ();
 use Foswiki::Plugins::JQueryPlugin ();
 
-our $VERSION = '$Rev$';
-our $RELEASE = '1.10';
+our $VERSION = '1.20';
+our $RELEASE = '1.20';
 our $SHORTDESCRIPTION = 'deferred loading of images';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneInit;
