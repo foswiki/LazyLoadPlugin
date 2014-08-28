@@ -14,7 +14,7 @@ sub new {
     $class->SUPER::new(
       $session,
       name => 'LazyLoad',
-      version => '1.8.2',
+      version => '1.9.3',
       author => 'Mika Tuupola',
       homepage => 'http://www.appelsiini.net/projects/lazyload',
       javascript => ['jquery.lazyload.js', 'jquery.lazyload.init.js'], 
