@@ -5,7 +5,7 @@ jQuery(function($) {
     skip_invisible: false
   };
 
-  $(".jqLazyLoad:not(.jqInitedLazyLoad)").each(function() {
+  $(".jqLazyLoad:not(.jqInitedLazyLoad)").livequery(function() {
     var $this = $(this), 
         opts = $.extend({}, defaults, $this.metadata());
 
