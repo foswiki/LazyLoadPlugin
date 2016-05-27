@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# LazyLoadPlugin is Copyright (C) 2011-2014 Michael Daum http://michaeldaumconsulting.com
+# LazyLoadPlugin is Copyright (C) 2011-2016 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -29,7 +29,7 @@ sub new {
     $class->SUPER::new(
       $session,
       name => 'LazyLoad',
-      version => '1.9.3',
+      version => '1.9.7',
       author => 'Mika Tuupola',
       homepage => 'http://www.appelsiini.net/projects/lazyload',
       javascript => ['jquery.lazyload.js', 'jquery.lazyload.init.js'], 

@@ -1,5 +1,7 @@
 %META:TOPICINFO{author="ProjectContributor" comment="autosave" date="1356278775" format="1.1" version="3"}%
 ---+!! %TOPIC%
+%FORMFIELD{"Description"}%
+
 %TOC%
 
 This plugin allows to defer loading of images within a section of a page. 
@@ -28,25 +30,30 @@ Note that you won't need to surround an %IMAGEGALLERY tag of Foswiki:Extensions/
 %START/ENDLAZYLOAD macros as !ImageGalleryPlugin supports lazy loading of images automatically from version 5.2 onwards.
 
 ---++ Installation Instructions
-
 %$INSTALL_INSTRUCTIONS%
 
----++ Info
-<!--
-   * Set SHORTDESCRIPTION = %$SHORTDESCRIPTION%
--->
+---++ Dependencies
+%$DEPENDENCIES%
 
-|  Author(s): | Michael Daum |
-|  Copyright: | &copy; 2007-2012 Mika Tuupola http://www.appelsiini.net/ (jQuery plugin); %BR% \
-                &copy; 2011-2014 Michael Daum http://michaeldaumconsulting.com (foswiki integration) |
-|  License: | MIT license http://www.opensource.org/licenses/mit-license.php |
-|  Release: | %$RELEASE% |
-|  Version: | %$VERSION% |
-|  Change History: | <!-- versions below in reverse order -->&nbsp; |
-|  28 Aug 2014: | upgraded to lazzyload 1.9.3 |
-|  14 Mar 2013: | upgraded to lazzyload 1.8.2 |
-|  10 Mar 2012: | upgraded to latest version of lazzyload 1.7.2 |
+---++ Copyright
+   * &copy; 2007-2012 Mika Tuupola http://www.appelsiini.net/ (jQuery plugin)
+   * &copy; 2011-2016 Michael Daum http://michaeldaumconsulting.com (Foswiki integration)
+
+---++ Change History
+%TABLE{columnwidths="7em" tablewidth="100%"}%
+|  27 May 2016: | upgraded to lazyload 1.9.7; disable itself in static content such as print-outs | 
+|  28 Aug 2014: | upgraded to lazyload 1.9.3 |
+|  14 Mar 2013: | upgraded to lazyload 1.8.2 |
+|  10 Mar 2012: | upgraded to latest version of lazyload 1.7.2 |
 |  30 Sep 2011: | fixed dependency on jquery.metadata |
-|  Dependencies: | %$DEPENDENCIES% |
-|  Home page: | Foswiki:Extensions/%TOPIC% |
-|  Support: | Foswiki:Support/%TOPIC% |
+
+%META:FORM{name="PackageForm"}%
+%META:FIELD{name="Author" title="Author" value="Michael Daum"}%
+%META:FIELD{name="Copyright" title="Copyright" value=""}%
+%META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
+%META:FIELD{name="Home" title="Home" value="Foswiki:Extensions/%TOPIC%"}%
+%META:FIELD{name="License" title="License" value="MIT license http://www.opensource.org/licenses/mit-license.php"}%
+%META:FIELD{name="Release" title="Release" value="%$RELEASE%"}%
+%META:FIELD{name="Repository" title="Repository" value="https://github.com/foswiki/%TOPIC%"}%
+%META:FIELD{name="Support" title="Support" value="Foswiki:Support/%TOPIC%"}%
+%META:FIELD{name="Version" title="Version" value="%$VERSION%"}%

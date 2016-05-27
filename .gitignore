@@ -1,5 +1,6 @@
 *.gz
 *.swp
+*.jslint
 pub/System/LazyLoadPlugin/git
 pub/System/LazyLoadPlugin/jquery.lazyload.init.js
 pub/System/LazyLoadPlugin/jquery.lazyload.js

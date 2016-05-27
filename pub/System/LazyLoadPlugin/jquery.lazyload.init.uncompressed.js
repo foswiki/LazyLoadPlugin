@@ -1,3 +1,4 @@
+"use strict";
 jQuery(function($) {
 
   var defaults = {
@@ -7,7 +8,7 @@ jQuery(function($) {
 
   $(".jqLazyLoad:not(.jqInitedLazyLoad)").livequery(function() {
     var $this = $(this), 
-        opts = $.extend({}, defaults, $this.metadata());
+        opts = $.extend({}, defaults, $this.data(), $this.metadata());
 
     $this.addClass("jqInitedLazyLoad");
     $this.find("img").lazyload(opts);

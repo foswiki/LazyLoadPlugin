@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# LazyLoadPlugin is Copyright (C) 2011-2014 Michael Daum http://michaeldaumconsulting.com
+# LazyLoadPlugin is Copyright (C) 2011-2016 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -21,8 +21,8 @@ use warnings;
 use Foswiki::Func ();
 use Foswiki::Plugins::JQueryPlugin ();
 
-our $VERSION = '1.30';
-our $RELEASE = '1.30';
+our $VERSION = '1.40';
+our $RELEASE = '25 May 2016';
 our $SHORTDESCRIPTION = 'deferred loading of images';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneInit;
@@ -30,6 +30,10 @@ our $translationToken;
 our $placeholder;
 
 sub initPlugin {
+
+  if (Foswiki::Func::getContext()->{static}) {
+    return 0;
+  }
 
   $translationToken = "\2";
   $placeholder = "$Foswiki::cfg{PubUrlPath}/$Foswiki::cfg{SystemWebName}/LazyLoadPlugin/img/white.gif";
