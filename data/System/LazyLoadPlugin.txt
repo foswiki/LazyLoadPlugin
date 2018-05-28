@@ -1,4 +1,4 @@
-%META:TOPICINFO{author="ProjectContributor" comment="autosave" date="1356278775" format="1.1" version="3"}%
+%META:TOPICINFO{author="ProjectContributor" comment="" date="1527516589" format="1.1" version="1"}%
 ---+!! %TOPIC%
 %FORMFIELD{"Description"}%
 
@@ -37,10 +37,11 @@ Note that you won't need to surround an %IMAGEGALLERY tag of Foswiki:Extensions/
 
 ---++ Copyright
    * &copy; 2007-2012 Mika Tuupola http://www.appelsiini.net/ (jQuery plugin)
-   * &copy; 2011-2016 Michael Daum http://michaeldaumconsulting.com (Foswiki integration)
+   * &copy; 2011-2018 Michael Daum http://michaeldaumconsulting.com (Foswiki integration)
 
 ---++ Change History
 %TABLE{columnwidths="7em" tablewidth="100%"}%
+|  28 May 2018: | don't return false in static context |
 |  27 May 2016: | upgraded to lazyload 1.9.7; disable itself in static content such as print-outs | 
 |  28 Aug 2014: | upgraded to lazyload 1.9.3 |
 |  14 Mar 2013: | upgraded to lazyload 1.8.2 |
@@ -49,7 +50,7 @@ Note that you won't need to surround an %IMAGEGALLERY tag of Foswiki:Extensions/
 
 %META:FORM{name="PackageForm"}%
 %META:FIELD{name="Author" title="Author" value="Michael Daum"}%
-%META:FIELD{name="Copyright" title="Copyright" value=""}%
+%META:FIELD{name="Copyright" title="Copyright" value="2013-2018 Michael Daum http://michaeldaumconsulting.com"}%
 %META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
 %META:FIELD{name="Home" title="Home" value="Foswiki:Extensions/%TOPIC%"}%
 %META:FIELD{name="License" title="License" value="MIT license http://www.opensource.org/licenses/mit-license.php"}%

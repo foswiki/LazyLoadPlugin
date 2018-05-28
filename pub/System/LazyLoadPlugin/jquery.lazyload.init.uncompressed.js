@@ -3,7 +3,8 @@ jQuery(function($) {
 
   var defaults = {
     effect: "fadeIn",
-    skip_invisible: false
+    skip_invisible: false,
+    threshold: 200
   };
 
   $(".jqLazyLoad:not(.jqInitedLazyLoad)").livequery(function() {

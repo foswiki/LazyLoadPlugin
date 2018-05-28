@@ -4,10 +4,10 @@
 pub/System/LazyLoadPlugin/git
 pub/System/LazyLoadPlugin/jquery.lazyload.init.js
 pub/System/LazyLoadPlugin/jquery.lazyload.js
-LazyLoadPlugin.md5
-LazyLoadPlugin.sha1
-LazyLoadPlugin.tgz
-LazyLoadPlugin.txt
-LazyLoadPlugin.zip
-LazyLoadPlugin_installer
-LazyLoadPlugin_installer.pl
+/LazyLoadPlugin.md5
+/LazyLoadPlugin.sha1
+/LazyLoadPlugin.tgz
+/LazyLoadPlugin.txt
+/LazyLoadPlugin.zip
+/LazyLoadPlugin_installer
+/LazyLoadPlugin_installer.pl

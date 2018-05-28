@@ -1,3 +1,4 @@
+!noci
 data/System/LazyLoadPlugin.txt 0644
 lib/Foswiki/Plugins/LazyLoadPlugin/Core.pm 0644
 lib/Foswiki/Plugins/LazyLoadPlugin.pm 0644
