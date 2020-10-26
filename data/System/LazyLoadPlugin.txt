@@ -6,16 +6,8 @@
 
 This plugin allows to defer loading of images within a section of a page. 
 
-This is done by first parsing out all =src= attributes of the img tags contained, and then by registering these images to the jQuery plugin by Mika Tuupola (http://www.appelsiini.net/projects/lazyload). 
-
-Unfortunately - as mentioned by Mika - a pure !JavaScript solution does
-not work anymore with modern browsers as these collect and download all image sources _before_ handing over control
-to the !JavaScript interpreter. While this is good for the overall page loading performance, there's no way to stop
-this download process from within !JavaScript as far as I know. So the only way to prevent images being already loaded
-is to replace the original value of the =src= attribute of img tags with a placeholder image, e.g. a white dot, and
-remember the original image location in a html5 =data-src= attribute. The lazyload jQuery plugin will then take over
-control when to patch in the real =src= value again based on the scroll state of the viewport of the browser window.
-This will then trigger the browser to download the image.
+Modern browsers are [[https://caniuse.com/#feat=loading-lazy-attr][all able to load images in a lazy way by themselves]], except Internet Explorer 11 and below.
+For these there is a [[https://github.com/aFarkas/lazysizes][JavaScript based solution]] to retrofit this feature.
 
 ---++ Usage
 <verbatim class="tml">
@@ -26,21 +18,15 @@ images go in here
 %ENDLAZYLOAD%
 </verbatim>
 
-Note that you won't need to surround an %IMAGEGALLERY tag of Foswiki:Extensions/ImageGalleryPlugin with
-%START/ENDLAZYLOAD macros as !ImageGalleryPlugin supports lazy loading of images automatically from version 5.2 onwards.
-
 ---++ Installation Instructions
 %$INSTALL_INSTRUCTIONS%
 
 ---++ Dependencies
 %$DEPENDENCIES%
 
----++ Copyright
-   * &copy; 2007-2012 Mika Tuupola http://www.appelsiini.net/ (jQuery plugin)
-   * &copy; 2011-2018 Michael Daum http://michaeldaumconsulting.com (Foswiki integration)
-
 ---++ Change History
 %TABLE{columnwidths="7em" tablewidth="100%"}%
+|  26 Oct 2020: | rewrite to use native lazy loading when available and otherwise use a !JavaScript solution |
 |  28 May 2018: | don't return false in static context |
 |  27 May 2016: | upgraded to lazyload 1.9.7; disable itself in static content such as print-outs | 
 |  28 Aug 2014: | upgraded to lazyload 1.9.3 |
@@ -50,7 +36,7 @@ Note that you won't need to surround an %IMAGEGALLERY tag of Foswiki:Extensions/
 
 %META:FORM{name="PackageForm"}%
 %META:FIELD{name="Author" title="Author" value="Michael Daum"}%
-%META:FIELD{name="Copyright" title="Copyright" value="2013-2018 Michael Daum http://michaeldaumconsulting.com"}%
+%META:FIELD{name="Copyright" title="Copyright" value="2013-2020 Michael Daum"}%
 %META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
 %META:FIELD{name="Home" title="Home" value="Foswiki:Extensions/%TOPIC%"}%
 %META:FIELD{name="License" title="License" value="MIT license http://www.opensource.org/licenses/mit-license.php"}%

@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# LazyLoadPlugin is Copyright (C) 2011-2018 Michael Daum http://michaeldaumconsulting.com
+# LazyLoadPlugin is Copyright (C) 2011-2020 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -21,12 +21,13 @@ use warnings;
 use Foswiki::Func ();
 use Foswiki::Plugins::JQueryPlugin ();
 
-our $VERSION = '1.41';
-our $RELEASE = '25 May 2018';
-our $SHORTDESCRIPTION = 'deferred loading of images';
+our $VERSION = '3.00';
+our $RELEASE = '26 Oct 2020';
+our $SHORTDESCRIPTION = 'Deferred loading of images';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneInit;
-our $translationToken = "\2";
+our $startToken = "\2";
+our $endToken = "\3";
 our $placeholder;
 
 sub initPlugin {
@@ -35,7 +36,7 @@ sub initPlugin {
     return 1;
   }
 
-  $placeholder = "$Foswiki::cfg{PubUrlPath}/$Foswiki::cfg{SystemWebName}/LazyLoadPlugin/img/white.gif";
+  $placeholder = "$Foswiki::cfg{PubUrlPath}/$Foswiki::cfg{SystemWebName}/LazyLoadPlugin/white.gif";
   $doneInit = 0;
 
   Foswiki::Plugins::JQueryPlugin::registerPlugin("LazyLoad", "Foswiki::Plugins::LazyLoadPlugin::Core");
@@ -46,11 +47,11 @@ sub initPlugin {
       $doneInit = 1;
     }
 
-    return $translationToken."<div class='jqLazyLoad'>";
+    return $startToken;
   });
 
   Foswiki::Func::registerTagHandler("ENDLAZYLOAD", sub {
-    return "</div>".$translationToken;
+    return $endToken;
   });
 
 
@@ -60,15 +61,14 @@ sub initPlugin {
 sub completePageHandler {
   # my ( $text, $topic, $web, $meta ) = @_;
 
-  $_[0] =~ s/$translationToken(<div class='jqLazyLoad'>)(.*?)(<\/div>)$translationToken/$1.handleLazyLoad($2).$3/geos;
+  $_[0] =~ s/$startToken(.*?)$endToken/handleLazyLoad($1)/geos;
 }
 
 sub handleLazyLoad {
   my $text = shift;
 
-
   # repace src with data-original html5 attribute
-  $text =~ s/(<img[^>]*?)src=(["'].*?["'])([^>]*?>)/$1src='$placeholder' data-original=$2$3/g;
+  $text =~ s/(<img[^>]*?)src=(["'].*?["'])([^>]*?>)/$1src='$placeholder' class='lazyload' loading='lazy' data-src=$2$3/g;
 
   return $text;
 }

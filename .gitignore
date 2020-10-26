@@ -2,8 +2,9 @@
 *.swp
 *.jslint
 pub/System/LazyLoadPlugin/git
-pub/System/LazyLoadPlugin/jquery.lazyload.init.js
-pub/System/LazyLoadPlugin/jquery.lazyload.js
+pub/System/LazyLoadPlugin/init.js
+pub/System/LazyLoadPlugin/lazysizes.js
+pub/System/LazyLoadPlugin/attic
 /LazyLoadPlugin.md5
 /LazyLoadPlugin.sha1
 /LazyLoadPlugin.tgz
